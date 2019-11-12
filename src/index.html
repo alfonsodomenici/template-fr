@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>App-Layout</title>
+    <link rel="stylesheet" href="pure.css">
+    <link rel="stylesheet" href="layout.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <ap-ajaxstatus></ap-ajaxstatus>
+    <ap-growl></ap-growl>
+    <main>
+        <header>
+            <a href="#menu" id="menuLink" class="menu-link">
+                <!-- Hamburger icon -->
+                <span></span>
+            </a>
+            <ap-appbar></ap-appbar>
+            <ap-breadcrumb>...</ap-breadcrumb>
+        </header>
+        <nav>
+            <ap-nav></ap-nav>
+        </nav>
+        <article>
+            <ap-route></ap-route>
+        </article>
+        <footer> <small>copyright Arpa Ivrea 2019</small></footer>
+    </main>
+    
+    <!--<script src="keycloak.js"></script>-->
+    <script src="app.js" type="module"></script>
+</body>
+
+</html>
