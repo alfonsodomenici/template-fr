@@ -41,14 +41,17 @@ menuLink.addEventListener('click', e => {
     }
 });
 
+/*
 customElements.whenDefined('ap-nav')
     .then(_ => {
         const apNav = document.querySelector('ap-nav');
         apNav.menu = ApMenu.menu();
     });
 
+
 customElements.whenDefined('ap-appbar')
     .then(_ => {
         const apAppBar = document.querySelector('ap-appbar');
         apAppBar.appBar = ApMenu.appBar();
     })
+*/

@@ -1,4 +1,5 @@
 import Myi18n from './../Myi18n.js';
+
 /*import { keycloak } from "./../app.js";*/
 
 export default class RestService {
@@ -95,6 +96,7 @@ export default class RestService {
             const origMethod = target[propKey];
             const successMsg = Myi18n.getMessage(`${propKey}Success`);
             const failedMsg = Myi18n.getMessage(`${propKey}Failed`);
+            console.log(successMsg,failedMsg, propKey);
             return async (...args) => {
                 try {
                     const start = performance.now();

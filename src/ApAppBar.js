@@ -11,7 +11,12 @@ export default class ApAppBar extends ApElementView {
 
 
     connectedCallback() {
-        
+        fetch("./ApAppBar.json")
+            .then(response => response.json())
+            .then(json => {
+                console.log(JSON.stringify(json));
+                this.appBar = json
+            });
     }
 
     onLinkClicked(e) {

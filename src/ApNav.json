@@ -1,0 +1,10 @@
+[
+    {
+        "type": "item",
+        "url": "#TestList",
+        "label": "Test",
+        "icon": "",
+        "params": {},
+        "external": false
+    }
+]

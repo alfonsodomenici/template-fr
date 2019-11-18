@@ -11,6 +11,12 @@ export default class ApNav extends ApElementView {
 
     connectedCallback() {
         window.addEventListener('hashchange', e => this.onNavigation(e));
+        fetch("./ApNav.json")
+            .then(response => response.json())
+            .then(json => {
+                console.log(JSON.stringify(json));
+                this.menu = json
+            });
     }
 
     onLinkClicked(e) {

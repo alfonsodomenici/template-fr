@@ -16,4 +16,15 @@ export default class TestService extends RestService {
         return await this._getJsonData(`${this.url}/${id}`);
     }
 
+    async create(json){
+        return await this._postJsonData(`${this.url}`);
+    }
+    async update(json){
+        return await this._putJsonData(`${this.url}/${json.id}`);
+    }
+
+    async delete(json){
+        return await this._deleteJsonData(`${this.url}/${json.id}`);
+    }
+
 }
