@@ -11,14 +11,20 @@ export default class ApAppBar extends ApElementView {
 
 
     connectedCallback() {
+        window.addEventListener('hashchange', e => this.onNavigation(e));
         fetch("./menuBar.json")
             .then(response => response.json())
             .then(json => {
                 console.log(JSON.stringify(json));
-                this.appBar = json
+                this.appBar = json;
+                this.navigateToHome();
             });
     }
 
+    navigateToHome(){
+        const el = this.root.querySelector(`a[href="#Home"]`);
+        el.click();
+    }
     onLinkClicked(e) {
         const target = e.composedPath()[0];
         this.changeActiveLink(target);
@@ -27,18 +33,23 @@ export default class ApAppBar extends ApElementView {
     onNavigation(e) {
         const { hash } = window.location;
         const link = this.root.querySelector(`a[href="${hash}"]`);
-        this.changeActiveLink(link);
-        const event = new CustomEvent(
-            'ap-navigation', {
-            detail: {
-                link: hash.substring(1),
-                src: 'mainnav',
-                params: {}
-            },
-            bubbles: true
+        console.dir(link);
+        if (link) {
+            console.log(`appBar navigation event ${hash}`);
+            this.changeActiveLink(link);
+            const event = new CustomEvent(
+                'ap-navigation', {
+                detail: {
+                    type: link.dataset.type,
+                    link: hash.substring(1),
+                    src: 'appbar',
+                    params: {}
+                },
+                bubbles: true
+            }
+            );
+            this.dispatchEvent(event);
         }
-        );
-        this.dispatchEvent(event);
     }
 
     changeActiveLink(target) {
@@ -60,14 +71,14 @@ export default class ApAppBar extends ApElementView {
 
     createMenuItem({ type, url, label, icon, params, external }) {
         return html`
-            <li class="pure-menu-item"><a href="${url}" class="pure-menu-link" @click=${e => this.onLinkClicked(e)}>${label}</a></li>
+            <li class="pure-menu-item"><a data-type="${type}" href="${url}" class="pure-menu-link" @click=${e => this.onLinkClicked(e)}>${label}</a></li>
         `;
     }
 
     createView() {
         return html`
             <div class="pure-menu pure-menu-horizontal">
-                <a href="#" class="pure-menu-heading pure-menu-link">${this.appBar.title}</a>
+                <a data-type="item" href="#Home" class="pure-menu-heading pure-menu-link">${this.appBar.title}</a>
                 <ul class="pure-menu-list">
                     ${this._appBar.menu.map(e => this.createMenuItem(e))}
                 </ul>

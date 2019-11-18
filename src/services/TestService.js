@@ -8,8 +8,13 @@ export default class TestService extends RestService {
         this.url +=  '/posts';
     }
 
-    async all({start, pageSize}) {
-        return await this._getJsonData(`${this.url}?_start=${start}&_limit=${pageSize}`);
+    async all({user,start, pageSize}) {
+        if(user){
+            return await this._getJsonData(`${this.url}?userId=${user}&_start=${start}&_limit=${pageSize}`);
+        }else{
+            return await this._getJsonData(`${this.url}?_start=${start}&_limit=${pageSize}`);
+        }
+        
     }
 
     async find(id){

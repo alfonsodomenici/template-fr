@@ -1,6 +1,21 @@
 {
     "title": "App-Template",
     "menu": [
-
+        {
+            "type": "submenu",
+            "url": "#Menu1",
+            "label": "menu1",
+            "icon": "",
+            "params": {},
+            "external": false
+        },
+        {
+            "type": "item",
+            "url": "#Menu2",
+            "label": "menu2",
+            "icon": "",
+            "params": {},
+            "external": false
+        }
     ]
 }

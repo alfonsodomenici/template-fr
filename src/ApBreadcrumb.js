@@ -74,6 +74,8 @@ export default class ApBreadcrumb extends ApElement {
             this.onBreadcrumbNavigation(e);
         } else if (e.detail.src === 'mainnav') {
             this.onMainnavNavigation(e);
+        }else if (e.detail.src === 'appbar') {
+            this.onAppbarNavigation(e);
         } else {
             this.bc.set(e.detail.link, e.detail);
         }
@@ -88,6 +90,13 @@ export default class ApBreadcrumb extends ApElement {
     }
 
     onMainnavNavigation(e) {
+        const keys = Array.from(this.bc.keys());
+        keys.splice(0,1);
+        keys.forEach(k => this.bc.delete(k));
+        this.bc.set(e.detail.link, e.detail);
+    }
+
+    onAppbarNavigation(e) {
         this.bc.clear();
         this.bc.set(e.detail.link, e.detail);
     }

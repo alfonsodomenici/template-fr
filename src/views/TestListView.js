@@ -3,6 +3,7 @@ import ApElementView from "../ApElementView.js";
 import { html } from "./../../node_modules/lit-html/lit-html.js"
 import Paginator from "../Paginator.js";
 import TestService from '../services/TestService.js';
+import SearchPosts from './SearchPosts.js'
 
 export default class TestListView extends ApElementView {
 
@@ -10,12 +11,22 @@ export default class TestListView extends ApElementView {
         super({});
         this.service = new TestService();
         this.criteria = {
+            tipo: '',
+            denominazione: '',
             start: 0,
             pageSize: this.pageSize
         }
     }
 
     connectedCallback() {
+        this.loadData();
+    }
+
+    onSearch(e) {
+        this.detail = e.detail
+        this.criteria = e.detail;
+        this.criteria.start = 0;
+        this.criteria.pageSize = this.pageSize;
         this.loadData();
     }
 
@@ -111,7 +122,20 @@ export default class TestListView extends ApElementView {
 
     createView() {
         return html`
-        <h1>Elenco Laboratori</h1>
+            ${this.createSearchView()}
+            ${this.createDataView()}
+        `;
+    }
+
+    createSearchView() {
+        return html`
+            <search-posts @search=${e => this.onSearch(e)}></search-posts>
+        `;
+    }
+
+    createDataView() {
+        return html`
+        <h1>Elenco</h1>
         <table  class="pure-table pure-table-bordered">
             <thead>
                 <th>id</th>

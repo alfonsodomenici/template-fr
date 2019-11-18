@@ -1,10 +1,32 @@
-[
-    {
-        "type": "item",
-        "url": "#TestList",
-        "label": "Test",
-        "icon": "",
-        "params": {},
-        "external": false
-    }
-]
+{
+    "Home": [
+        {
+            "type": "item",
+            "url": "#TestList",
+            "label": "Test",
+            "icon": "",
+            "params": {},
+            "external": false
+        }
+    ],
+    "Menu1": [
+        {
+            "type": "item",
+            "url": "#TestList",
+            "label": "item Menu1",
+            "icon": "",
+            "params": {},
+            "external": false
+        }
+    ],
+    "Menu2": [
+        {
+            "type": "item",
+            "url": "#TestList",
+            "label": "item Menu2",
+            "icon": "",
+            "params": {},
+            "external": false
+        }
+    ]
+}

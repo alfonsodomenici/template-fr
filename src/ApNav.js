@@ -15,7 +15,8 @@ export default class ApNav extends ApElementView {
             .then(response => response.json())
             .then(json => {
                 console.log(JSON.stringify(json));
-                this.menu = json
+                this.allMenu = json;
+                this.menu = this.allMenu.Home
             });
     }
 
@@ -27,18 +28,28 @@ export default class ApNav extends ApElementView {
     onNavigation(e) {
         const { hash } = window.location;
         const link = this.root.querySelector(`a[href="${hash}"]`);
-        this.changeActiveLink(link);
-        const event = new CustomEvent(
-            'ap-navigation', {
-            detail: {
-                link: hash.substring(1),
-                src: 'mainnav',
-                params: {}
-            },
-            bubbles: true
+        if (link) {
+            console.log(`navBar navigation event ${hash}`);
+            this.changeActiveLink(link);
+            const event = new CustomEvent(
+                'ap-navigation', {
+                detail: {
+                    type: link.dataset.type,
+                    link: hash.substring(1),
+                    src: 'mainnav',
+                    params: {}
+                },
+                bubbles: true
+            }
+            );
+            this.dispatchEvent(event);
+        } else {
+            const mnu = Reflect.get(this.allMenu, hash.substring(1));
+            if (mnu) {
+                console.log(`navBar loading menu ${hash}`)
+                this.menu = mnu;
+            }
         }
-        );
-        this.dispatchEvent(event);
     }
 
     changeActiveLink(target) {
@@ -60,7 +71,7 @@ export default class ApNav extends ApElementView {
 
     createMenuItem({ type, url, label, icon, params, external }) {
         return html`
-            <li class="pure-menu-item"><a href="${url}" class="pure-menu-link" @click=${e => this.onLinkClicked(e)}>${label}</a></li>
+            <li class="pure-menu-item"><a data-type="${type}" href="${url}" class="pure-menu-link" @click=${e => this.onLinkClicked(e)}>${label}</a></li>
         `;
     }
 
