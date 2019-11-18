@@ -11,7 +11,7 @@ export default class ApAppBar extends ApElementView {
 
 
     connectedCallback() {
-        fetch("./ApAppBar.json")
+        fetch("./menuBar.json")
             .then(response => response.json())
             .then(json => {
                 console.log(JSON.stringify(json));
