@@ -3,7 +3,7 @@ import ApElementView from "../ApElementView.js";
 import { html } from "./../../node_modules/lit-html/lit-html.js"
 import Paginator from "../Paginator.js";
 import TestService from '../services/TestService.js';
-import SearchPosts from './SearchPosts.js'
+import SearchPosts from './SearchPosts.js';
 
 export default class TestListView extends ApElementView {
 
