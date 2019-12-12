@@ -12,17 +12,16 @@ export default class ApRoute extends HTMLElement {
 
     onNavigation(e) {
         const { detail } = e;
-        const {type } = detail;
-        console.log(type);  
-        if(type && type === "submenu"){
-            if(this.oldChild){
+        const { type } = detail;
+        if (type && type === "submenu") {
+            if (this.oldChild) {
                 this.root.removeChild(this.oldChild);
                 this.oldChild = null;
             }
-        }else{
+        } else {
             this.loadView(detail);
         }
-        
+
     }
 
     async loadView({ type, link, params }) {

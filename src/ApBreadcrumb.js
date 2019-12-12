@@ -23,7 +23,7 @@ export default class ApBreadcrumb extends ApElement {
 
     createLink(value) {
         return html`
-            <li><a href="#" @click=${e => this.onLinkClicked(e, value)}>${value.link}</a></li> > 
+            <li><a href="#${value.link}" @click=${e => this.onLinkClicked(e, value)}>${value.link}</a></li> > 
         `;
     }
 
@@ -56,7 +56,7 @@ export default class ApBreadcrumb extends ApElement {
     }
 
     onLinkClicked(e, value) {
-        e.preventDefault();
+        //e.preventDefault();
         value.src = 'breadcrumb'
         const event = new CustomEvent(
             'ap-navigation', {

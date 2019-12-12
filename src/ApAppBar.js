@@ -15,7 +15,6 @@ export default class ApAppBar extends ApElementView {
         fetch("./menuBar.json")
             .then(response => response.json())
             .then(json => {
-                console.log(JSON.stringify(json));
                 this.appBar = json;
                 this.navigateToHome();
             });
@@ -33,7 +32,6 @@ export default class ApAppBar extends ApElementView {
     onNavigation(e) {
         const { hash } = window.location;
         const link = this.root.querySelector(`a[href="${hash}"]`);
-        console.dir(link);
         if (link) {
             console.log(`appBar navigation event ${hash}`);
             this.changeActiveLink(link);
